@@ -13,9 +13,10 @@ class RestaurantFoodRateController extends ApiController
     {
         $this->checkFoodRestaurant($food_id, $restaurant_id);
 
-        $food_rating = Food::where('id', $food_id)->first()->rating;
+        $food_rating = Food::where('id', $food_id)->first();
+        $food_rating = $food_rating->rating;
 
-        return $this->showOne($food_rating);
+        return $this->successResponse(['rating' => $food_rating], 200);
     }
 
     public function rateFood(Request $request, $restaurant_id, $food_id)

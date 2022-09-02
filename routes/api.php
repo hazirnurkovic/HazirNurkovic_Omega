@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //Food from the specific restaurant
     Route::resource('/restaurants.food', RestaurantFoodController::class, ['only' => ['index', 'show']]);
     Route::post('/restaurants/{restaurant_id}/food/{food_id}/rate', [RestaurantFoodRateController::class, 'rateFood']);
+    Route::get('/restaurants/{restaurant_id}/food/{food_id}/rate', [RestaurantFoodRateController::class, 'getRating']);
 
     //Locations of the specific restaurant
     Route::resource('/restaurants.locations', RestaurantLocationController::class, ['only' => ['index', 'show']]);

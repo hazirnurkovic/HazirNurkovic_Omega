@@ -18,7 +18,6 @@ class RestaurantFoodController extends ApiController
     public function index(Restaurant $restaurant)
     {
         $food = $restaurant->food;
-
         return $this->showAll($food, 200);
     }
 
@@ -33,7 +32,8 @@ class RestaurantFoodController extends ApiController
         $request->validate([
             'name' => 'required|string|max:100',
             'price' => 'required|numeric',
-            'quantity' => 'required|integer'
+            'quantity' => 'required|integer',
+            'image' => 'required|image'
         ]);
 
         $food = new Food;
@@ -124,10 +124,8 @@ class RestaurantFoodController extends ApiController
         if (!$delete) {
             return $this->errorResponse('Error occured, please try again', 500);
         }
-        $food_del = $food->delete();
-        if (!$food_del) {
-            return $this->errorResponse('Error occured, please try again.', 500);
-        }
+
+        $food->delete();
         return $this->showOne($food);
     }
 

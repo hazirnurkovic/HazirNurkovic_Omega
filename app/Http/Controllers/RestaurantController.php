@@ -64,12 +64,15 @@ class RestaurantController extends ApiController
             'name' => 'string|unique:restaurants,name,' . $restaurant->id,
         ]);
 
+
         $restaurant->name = $request->name;
         if (!$restaurant->isDirty()) {
 
             return $this->errorResponse('You need to specify a different value to upade', 422);
         }
+
         $save = $restaurant->save();
+
 
         return $this->showOne($restaurant);
     }

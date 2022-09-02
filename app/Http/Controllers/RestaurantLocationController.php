@@ -16,7 +16,9 @@ class RestaurantLocationController extends ApiController
      */
     public function index(Restaurant $restaurant)
     {
-        $location = $restaurant->location;
+
+        $location = $restaurant->locations;
+
 
         return $this->showAll($location);
     }
@@ -74,11 +76,8 @@ class RestaurantLocationController extends ApiController
             'latitude' =>   'numeric',
         ]);
 
-        $this->checkRestaurant($restaurant, $location);
 
-        if ($location->isClean()) {
-            return $this->errorResponse('You need to specify at least one different value in order to update', 422);
-        }
+        $this->checkRestaurant($restaurant, $location);
 
         if ($request->has('address')) {
             $location->address = $request->address;
@@ -91,6 +90,10 @@ class RestaurantLocationController extends ApiController
 
         if ($request->has('latitude')) {
             $location->latitude = $request->latitude;
+        }
+
+        if ($location->isClean()) {
+            return $this->errorResponse('You need to specify at least one different value in order to update', 422);
         }
 
 

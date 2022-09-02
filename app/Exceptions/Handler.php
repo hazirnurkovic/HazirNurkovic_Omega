@@ -66,11 +66,11 @@ class Handler extends ExceptionHandler
         }
 
         if ($e instanceof AuthenticationException) {
-            return $this->errorResponse('Unauthenticated!', 401);
+            return $this->errorResponse('Unauthenticated!', 403);
         }
 
         if ($e instanceof AuthorizationException) {
-            return $this->errorResponse($e->getMessage(), 403);
+            return $this->errorResponse($e->getMessage(), 401);
         }
 
         if ($e instanceof NotFoundHttpException) {
