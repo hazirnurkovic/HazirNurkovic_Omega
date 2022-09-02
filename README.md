@@ -7,3 +7,5 @@ First, you need to register, where you will get bearer token. Use that token unt
 Admin can create restaurant chain, all of the locations of the specific restaurant, food.
 
 User can see restaurants, food, locations, rate and order food.
+
+!! I expect longitude and latitude to be given from front-end, so I just put 2 fields ( longitude and latitude ), for testing, I found longitude and latitude of some places that i chose and just inserted them as fields, and then meassured distance between user and restaurants. (Link to get longitude and latitude: https://www.latlong.net/) !!
